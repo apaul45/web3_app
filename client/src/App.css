@@ -4,11 +4,12 @@
 
 .todo-list {
   list-style-position: inside;
+  list-style-type: none;
 }
 
 li {
   line-height: 40px;
-  width: 88%;
+  width: 98%;
 }
 
 ol {

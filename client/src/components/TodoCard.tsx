@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // @ts-ignore
-function TodoCard({ task, editCallback }) {
+function TodoCard({ task, editCallback, toggleCallback }) {
   const [editing, setEditing] = useState(false);
 
   const handleChange = (content: string) => {
@@ -19,19 +19,30 @@ function TodoCard({ task, editCallback }) {
 
   return (
     <li className="list-element">
+      {!task.completed && (
+        <input
+          type="checkbox"
+          style={{ marginRight: "2rem" }}
+          onClick={() => toggleCallback(task.id)}
+        />
+      )}
       {editing ? (
-        <>
-          <input onChange={(event) => handleChange(event.target.value)} />
+        !task.completed && (
+          <>
+            <input onChange={(event) => handleChange(event.target.value)} />
 
-          <button onClick={handleFinishClick}>Finish</button>
-        </>
+            <button onClick={handleFinishClick}>Finish</button>
+          </>
+        )
       ) : (
         <>
-          {task.content}
+          {task.completed ? <s>{task.content}</s> : task.content}
 
-          <button style={{ marginLeft: "2rem" }} onClick={handleEditClick}>
-            Edit
-          </button>
+          {!task.completed && (
+            <button style={{ marginLeft: "2rem" }} onClick={handleEditClick}>
+              Edit
+            </button>
+          )}
         </>
       )}
     </li>

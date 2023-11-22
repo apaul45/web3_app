@@ -7,7 +7,7 @@ import { TodoCard } from "./components";
 
 function App() {
   // @ts-ignore
-  const { account, todoList, addTask, editTask } =
+  const { account, todoList, addTask, editTask, toggleTask } =
     useContext(BlockChainContext);
 
   return (
@@ -29,16 +29,17 @@ function App() {
         Add Todo
       </button>
       <div className="app">
-        <ol className="todo-list">
+        <ul className="todo-list">
           {todoList.map((task: Task) => (
             <TodoCard
               task={task}
               editCallback={(id: number, content: string) =>
                 editTask(id, content)
               }
+              toggleCallback={(id: number) => toggleTask(id)}
             />
           ))}
-        </ol>
+        </ul>
       </div>
     </div>
   );
