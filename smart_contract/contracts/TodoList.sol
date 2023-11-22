@@ -23,6 +23,7 @@ contract TodoList {
   }
   
   event ToggledTask(Task task);
+  event EditedTask(Task task);
   
   Task[] public tasks;
   
@@ -31,9 +32,16 @@ contract TodoList {
   }
   
   function createTask(string memory _content) public returns (Task[] memory) {
-    taskCount++;
     tasks.push(Task(taskCount, _content, false));
+    taskCount++;
     return tasks;
+  }
+  
+  function editTask(uint _id, string memory _content) public {
+    Task memory _task = tasks[_id];
+    _task.content = _content;
+    tasks[_id] = _task;
+    emit EditedTask(_task);
   }
   
   function toggleTask(uint _id) public {

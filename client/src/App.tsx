@@ -3,10 +3,12 @@ import "./App.css";
 import { BlockChainContext } from "./context/BlockchainContext";
 import { Task } from "./types";
 import ethereum from "./assets/ethereum.svg";
+import { TodoCard } from "./components";
 
 function App() {
   // @ts-ignore
-  const { account, todoList, addTask } = useContext(BlockChainContext);
+  const { account, todoList, addTask, editTask } =
+    useContext(BlockChainContext);
 
   return (
     <div className="app">
@@ -27,9 +29,14 @@ function App() {
         Add Todo
       </button>
       <div className="app">
-        <ol id="todo-list">
+        <ol className="todo-list">
           {todoList.map((task: Task) => (
-            <li className="list-element">{task.content}</li>
+            <TodoCard
+              task={task}
+              editCallback={(id: number, content: string) =>
+                editTask(id, content)
+              }
+            />
           ))}
         </ol>
       </div>

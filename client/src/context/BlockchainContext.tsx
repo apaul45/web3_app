@@ -74,17 +74,29 @@ export const BlockChainProvider = ({ children }) => {
   };
 
   const addTask = async (content: string) => {
-    const contract: Contract = await getContract();
+    const contract = await getContract();
     await contract.createTask(content);
 
     return setTodoList([
       ...todoList,
-      { id: todoList.length + 1, content, completed: false },
+      { id: todoList.length, content, completed: false },
     ]);
   };
 
+  const editTask = async (id: number, content: string) => {
+    const contract = await getContract();
+    contract.editTask(id, content);
+
+    let newList = todoList;
+    newList[id].content = content;
+
+    return setTodoList(newList);
+  };
+
   return (
-    <BlockChainContext.Provider value={{ todoList, addTask, account }}>
+    <BlockChainContext.Provider
+      value={{ todoList, addTask, account, editTask }}
+    >
       {children}
     </BlockChainContext.Provider>
   );
