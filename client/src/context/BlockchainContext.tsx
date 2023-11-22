@@ -73,9 +73,10 @@ export const BlockChainProvider = ({ children }) => {
     const contract: Contract = await getContract();
     await contract.createTask(content);
 
-    let newTodoList = todoList;
-    newTodoList.push({ id: newTodoList.length + 1, content, completed: false });
-    setTodoList(newTodoList);
+    return setTodoList([
+      ...todoList,
+      { id: todoList.length + 1, content, completed: false },
+    ]);
   };
 
   return (
