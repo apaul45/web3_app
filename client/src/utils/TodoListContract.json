@@ -6922,9 +6922,7 @@
   "ast": {
     "absolutePath": "project:/contracts/TodoList.sol",
     "exportedSymbols": {
-      "TodoList": [
-        95
-      ]
+      "TodoList": [95]
     },
     "id": 96,
     "license": "UNLICENSED",
@@ -6932,12 +6930,7 @@
     "nodes": [
       {
         "id": 1,
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".13"
-        ],
+        "literals": ["solidity", "^", "0.8", ".13"],
         "nodeType": "PragmaDirective",
         "src": "40:24:0"
       },
@@ -6949,9 +6942,7 @@
         "contractKind": "contract",
         "fullyImplemented": true,
         "id": 95,
-        "linearizedBaseContracts": [
-          95
-        ],
+        "linearizedBaseContracts": [95],
         "name": "TodoList",
         "nameLocation": "429:8:0",
         "nodeType": "ContractDefinition",
@@ -7676,9 +7667,7 @@
               "src": "1062:134:0",
               "statements": [
                 {
-                  "assignments": [
-                    70
-                  ],
+                  "assignments": [70],
                   "declarations": [
                     {
                       "constant": false,
