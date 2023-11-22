@@ -26,6 +26,7 @@ function TodoCard({ task, editCallback, toggleCallback }) {
           onClick={() => toggleCallback(task.id)}
         />
       )}
+
       {editing ? (
         !task.completed && (
           <>
@@ -36,12 +37,15 @@ function TodoCard({ task, editCallback, toggleCallback }) {
         )
       ) : (
         <>
-          {task.completed ? <s>{task.content}</s> : task.content}
-
-          {!task.completed && (
-            <button style={{ marginLeft: "2rem" }} onClick={handleEditClick}>
-              Edit
-            </button>
+          {task.completed ? (
+            <s>{task.content}</s>
+          ) : (
+            <>
+              {task.content}
+              <button style={{ marginLeft: "2rem" }} onClick={handleEditClick}>
+                Edit
+              </button>
+            </>
           )}
         </>
       )}
