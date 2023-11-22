@@ -25,9 +25,9 @@ export const BlockChainProvider = ({ children }) => {
   const { ethereum } = window; // Metamask exposes a ethereum object in window that can be used to interact w/network
 
   const getAccounts = async () => {
-    if (!ethereum) return;
-
     try {
+      if (!ethereum) return alert("Please install MetaMask.");
+
       // Making a RPC (which is how Metamask talks to Infura, who talks to Eth)
       // to the blockchain network (the one set on metamask) to retrieve accounts
       const accounts = await ethereum.request({
@@ -36,7 +36,11 @@ export const BlockChainProvider = ({ children }) => {
 
       // @ts-ignore
       setAccount(accounts[0]);
-    } catch {}
+    } catch (error) {
+      console.log(error);
+
+      throw new Error("No ethereum object");
+    }
   };
 
   const getContract = async () => {
